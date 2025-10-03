@@ -1,0 +1,8 @@
+:root {
+    --marca: #9E6DFF;
+    --claro: #F8F6FF;
+}
+
+header {
+    background-color: var(--marca);
+}
