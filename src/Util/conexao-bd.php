@@ -2,7 +2,7 @@
     $dbname = 'web_loja_de_roupas';
     $dbhost = 'localhost';
     $dbuser = 'root';
-    $dbpassword = '';
+    $dbpassword = 'root';
 
     $pdo = new PDO(
         'mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8mb4', $dbuser, $dbpassword,

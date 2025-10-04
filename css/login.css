@@ -1,0 +1,227 @@
+/* ===== Estilo geral ===== */
+body {
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  background-color: #a46bff;
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Ícone/logo da esquerda */
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+}
+
+/* Menu central */
+.navbar ul {
+  display: flex;
+  gap: 30px;
+}
+
+.navbar ul a {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navbar ul a:hover {
+  color: #222;
+}
+
+/* Ícone de usuário (direita) */
+.navbar .user-icon {
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.navbar .user-icon:hover {
+  color: #222;
+}
+
+/* ===== Banner/Login Topo ===== */
+.container-admin-banner {
+  text-align: center;
+  margin-top: 100px; /* compensar a navbar fixa */
+}
+
+.container-admin-banner .logo-admin {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.container-admin-banner h1 {
+  font-size: 32px;
+  margin: 15px 0;
+  font-weight: 700;
+  color: #fff;
+}
+
+.container-admin-banner .ornaments {
+  max-width: 150px;
+  opacity: 0.7;
+  margin-top: 15px;
+}
+
+/* ===== Área do formulário ===== */
+.container-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.form-wrapper {
+  background-color: #2a2a2a;
+  padding: 30px 40px;
+  border-radius: 12px;
+  width: 340px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  text-align: left;
+}
+
+.form-wrapper label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 500;
+}
+
+.form-wrapper input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* ===== Botões ===== */
+.acoes-login {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.botao-primario {
+  flex: 1;
+  padding: 10px;
+  background-color: #a46bff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.botao-primario:hover {
+  background-color: #620ffd;
+}
+
+.botao-secundario {
+  flex: 1;
+  text-align: center;
+  display: block;
+  padding: 10px;
+  border: 2px solid #a46bff;
+  border-radius: 6px;
+  color: #a46bff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+  cursor: pointer;
+  background: none;
+}
+
+.botao-secundario:hover {
+  background-color: #a46bff;
+  color: white;
+}
+
+/* ===== Mensagens ===== */
+.mensagem-erro, 
+.mensagem-ok {
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.mensagem-erro {
+  background-color: #ff4f4f;
+  color: white;
+}
+
+.mensagem-ok {
+  background-color: #4caf50;
+  color: white;
+}
+
+.oculto {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* ===== Quando já estiver logado ===== */
+.container-topo {
+  background: #2a2a2a;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 40px auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+.container-topo p {
+  margin-bottom: 10px;
+}
+
+.botao-sair {
+  padding: 8px 15px;
+  background: #ff4f4f;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.botao-sair:hover {
+  background: #d93a3a;
+}
+
+.link-adm {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 15px;
+  background: #a46bff;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.link-adm:hover {
+  background: #8a4ff7;
+}
