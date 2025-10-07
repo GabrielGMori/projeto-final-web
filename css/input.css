@@ -1,0 +1,28 @@
+@import 'vars.css';
+
+.label-padrao {
+    font-family: "Lato", Arial, sans-serif;
+    color: var(--branco);
+    font-size: 20px;
+
+    display: block;
+    margin-bottom: 8px;
+}
+
+.input-padrao {
+    font-family: "Lato", Arial, sans-serif;
+    color: var(--preto);
+    font-size: 18px;
+    background-color: var(--branco);
+    width: 100%;
+    padding: 10px 8px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    box-shadow: 1px 1px 4px 1px black;
+
+    ::placeholder {
+        color: var(--cinza-claro);
+    }
+}

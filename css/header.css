@@ -1,8 +1,100 @@
-:root {
-    --marca: #9E6DFF;
-    --claro: #F8F6FF;
+@import 'vars.css';
+
+.header-user .container-principal {
+    background-color: var(--marca);
 }
 
-header {
-    background-color: var(--marca);
+.header-admin .container-principal {
+    background-color: var(--cinza-claro);
+}
+
+.header-user .container-principal nav a {
+    color: var(--branco);
+}
+
+.header-admin .container-principal nav a {
+    color: var(--preto);
+}
+
+.header-admin .container-principal .botao-conta img, .header-admin .container-principal .botao-logo img {
+    filter: brightness(0.15);
+} 
+
+
+
+.header-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.header-principal .container-principal {
+    display: flex;
+    justify-content: space-between;
+
+    font-family: 'Lato', Arial, sans-serif;
+    height: 10%;
+
+    padding: 28px 54px;
+}
+
+.botao-logo img {
+    width: 50px;
+}
+
+.botao-conta img {
+    width: 30px;
+}
+
+.botao-conta  {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.header-principal .container-principal nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.header-principal .container-principal nav a {
+    font-family: "Lato", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+
+
+.container-conta {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-self: flex-end;
+    min-width: 300px;
+    border-radius: 0px 0px 15px 15px;
+    background-color: var(--preto);
+    padding: 20px 20px;
+}
+
+.container-conta p {
+    color: var(--branco);
+    font-size: 20px;
+}
+
+.container-conta b {
+    font-weight: bold;
+}
+
+.container-conta button {
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+.hidden {
+    visibility: hidden;
 }
