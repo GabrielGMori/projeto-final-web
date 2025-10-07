@@ -4,14 +4,14 @@ session_start();
 require_once 'src/conexao-bd.php';
 require_once 'src/Repositorio/UsuarioRepositorio.php';
 
-echo '<link rel="stylesheet" href="css/reset.css">';
+echo '<link rel="stylesheet" href="css/index.css">';
 
 $repoUsuario = new UsuarioRepositorio($pdo);
 if (!$repoUsuario->buscarPorEmail("admin@admin.com")) {
     $repoUsuario->criar("admin@admin.com", "12345", "admin");
-    echo '<p>Usuário admin criado!</p>';
+    echo '<p>Usuário criado!</p>';
 } else {
-    echo '<p>Usuário admin já existe!</p>';
+    echo '<p>Usuário já existe!</p>';
 }
 
 echo '<br>';

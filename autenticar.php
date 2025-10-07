@@ -3,7 +3,6 @@ session_start();
 
 require_once __DIR__ . '/src/conexao-bd.php';
 require_once __DIR__ . '/src/Repositorio/UsuarioRepositorio.php';
-require_once __DIR__ . '/src/Modelo/Usuario.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: login.php');

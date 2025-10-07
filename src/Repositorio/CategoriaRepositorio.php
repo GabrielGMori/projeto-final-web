@@ -57,4 +57,16 @@ class CategoriaRepositorio
         $stmt->bindValue(2, $categoria->getId());
         $stmt->execute();
     }
+
+    public function buscarPorId(int $id): ?Categoria
+    {
+        $sql = "SELECT id_pk, nome FROM categoria WHERE id_pk = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
+        $dados = $stmt->fetch();
+        return $dados ? $this->formarObjeto($dados) : null;
+    }
+
 }

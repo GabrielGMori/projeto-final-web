@@ -1,0 +1,54 @@
+@import 'index.css';
+
+main {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.container-lista {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+    gap: 10px;
+    background-color: var(--preto);
+    width: 700;
+    height: 600;
+    border-radius: 10px;
+    padding: 20px 10px;
+    overflow: scroll;
+}
+
+.container-direita {
+    display: flex;
+}
+
+.botao-add {
+    align-self: flex-end;
+    background-color: var(--marca);
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+
+    &:hover {
+        cursor: pointer;
+    }
+    box-shadow: 1px 1px 4px 1px black;
+}
+
+.botao-add img {
+    width: 25px;
+}
+
+.lista-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--marca);
+    padding: 10px;
+    border-radius: 10px;
+    &:hover {
+        cursor: pointer;
+    }
+}

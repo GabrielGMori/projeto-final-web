@@ -1,7 +1,6 @@
-@import 'vars.css';
-
 .botao {
     font-family: 'Lato', Arial, sans-serif;
+    text-decoration: none;
     border-radius: 10px;
     border: none;
     font-size: 25px;

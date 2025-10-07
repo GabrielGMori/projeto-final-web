@@ -1,4 +1,9 @@
+@import 'reset.css';
 @import 'vars.css';
+
+body {
+    background-color: var(--cinza-escuro);
+}
 
 h1 {
     font-family: 'Lato', Arial, sans-serif;
@@ -6,4 +11,22 @@ h1 {
     font-size: 50px;
     color: var(--branco);
     text-align: center;
+}
+
+p {
+    font-family: 'Lato', Arial, sans-serif;
+    font-size: 20px;
+    color: var(--branco);
+}  
+
+b {
+    font-weight: bold;
+}
+
+.disabled {
+    display: none;
+}
+
+.hidden {
+    visibility: hidden;
 }

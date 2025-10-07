@@ -20,7 +20,7 @@ function gerarHeader(bool $admin, string $email)
             <p>Logado como:</p>
             <p><b>' . htmlspecialchars($email) . ($email == '' ? 'Deslogado' : '') . '</b></p>
             <form action="logout.php">';
-    gerarButton("Sair", "cancelar", false, true);
+    gerarButton("sair", "Sair", "cancelar", false, true);
     echo '</form></div></header>';
     echo '<script src="js/header.js"></script>';
 }
