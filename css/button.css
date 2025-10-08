@@ -14,10 +14,6 @@
     }
 }
 
-.fit-content {
-    width: fit-content;
-}
-
 .botao-padrao {
     background-color: var(--marca);
 }

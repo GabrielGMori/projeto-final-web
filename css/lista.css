@@ -52,3 +52,26 @@ main {
         cursor: pointer;
     }
 }
+
+.lista-item-acoes {
+    display: flex;
+    gap: 5px;
+    align-self: flex-end;
+}
+
+.lista-item-acoes a {
+    background-color: transparent;
+    border: none;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.lista-item-acoes a img {
+    height: 30px;
+}
+
+.acoes {
+    display: flex;
+    gap: 10px;
+}
