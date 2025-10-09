@@ -32,9 +32,3 @@ form button, .acoesForm button {
     justify-content: center;
     gap: 30px;
 }
-
-.mensagem-erro {
-    font-size: 20px;
-    color: var(--vermelho);
-    font-weight: bold;
-}

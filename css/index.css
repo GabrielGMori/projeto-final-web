@@ -30,3 +30,9 @@ b {
 .hidden {
     visibility: hidden;
 }
+
+.mensagem-erro {
+    font-size: 20px;
+    color: var(--vermelho);
+    font-weight: bold;
+}

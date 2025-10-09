@@ -4,11 +4,12 @@ if (isset($_SESSION['email'])) {
     header('Location: categorias.php');
 }
 
-$erro = $_GET['erro'] ?? '';
-
 require_once 'src/Componentes/header.php';
 require_once 'src/Componentes/button.php';
 require_once 'src/Componentes/input.php';
+
+$erro = $_GET['erro'] ?? '';
+
 ?>
 
 <!doctype html>
