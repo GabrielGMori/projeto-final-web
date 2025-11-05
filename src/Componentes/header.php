@@ -1,20 +1,20 @@
 <?php
 require_once 'button.php';
 
-function gerarHeader(bool $admin, string $email)
+function gerarHeader(bool $admin, string $email, string $mainDir)
 {
-    echo '<link rel="stylesheet" href="css/header.css">';
+    echo '<link rel="stylesheet" href="'. $mainDir .'/css/header.css">';
     echo '<header class="header-principal header-' . ($admin == true ? 'admin' : 'user') . '">
             <div class="container-principal">
-                <a href="categorias.php" class="botao-logo"><img src="img/Logo.png" alt="Início"></a>
+                <a href="categorias" class="botao-logo"><img src="'. $mainDir .'/img/Logo.png" alt="Início"></a>
                 <nav>
-                    <a href="categorias.php">Peças</a>
-                    <a href="vendas.php">Vendas</a>
-                    <a href="reposicoes.php">Reposições</a>
-                    <a href="relatorios.php">Relatórios</a>
-                    ' . ($admin == true ? '<a href="usuarios.php">Usuários</a>' : '') . '
+                    <a href="categorias">Peças</a>
+                    <a href="vendas">Vendas</a>
+                    <a href="reposicoes">Reposições</a>
+                    <a href="relatorios">Relatórios</a>
+                    ' . ($admin == true ? '<a href="usuarios">Usuários</a>' : '') . '
                 </nav>
-                <button class="botao-conta '.($email == '' ? 'hidden' : '').'" id="botao-conta"><img src="img/Conta.png" alt="Conta"></button>
+                <button class="botao-conta '.($email == '' ? 'hidden' : '').'" id="botao-conta"><img src="'. $mainDir .'/img/Conta.png" alt="Conta"></button>
             </div>
             <div class="container-conta hidden" id="container-conta">
             <p>Logado como:</p>
@@ -22,5 +22,5 @@ function gerarHeader(bool $admin, string $email)
             <form action="logout.php">';
     gerarButton("sair", "Sair", "cancelar", false, true);
     echo '</form></div></header>';
-    echo '<script src="js/header.js"></script>';
+    echo '<script src="../js/header.js"></script>';
 }

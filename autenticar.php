@@ -26,6 +26,6 @@ if (!$repoUsuario->autenticar($email, $senha)) {
 
 session_regenerate_id(true);
 $_SESSION['email'] = $email;
-header('Location: categorias.php');
+header('Location: categorias');
 
 exit;

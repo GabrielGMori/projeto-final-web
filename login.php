@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['email'])) {
-    header('Location: categorias.php');
+    header('Location: categorias');
 }
 
 require_once 'src/Componentes/header.php';
@@ -10,6 +10,7 @@ require_once 'src/Componentes/input.php';
 
 $erro = $_GET['erro'] ?? '';
 
+$mainDir = '.';
 ?>
 
 <!doctype html>
@@ -28,16 +29,16 @@ $erro = $_GET['erro'] ?? '';
 </head>
 
 <body>
-    <?php gerarHeader(false, ''); ?>
+    <?php gerarHeader(false, '', $mainDir); ?>
 
     <main>
         <h1>Login</h1>
         <section class="container-form">
             <form action="autenticar.php" method="POST">
                 <?php
-                gerarInput("email", "email", "E-mail", "Insira seu e-mail...");
-                gerarInput("senha", "password", "Senha", "Insira sua senha...");
-                gerarButton("entrar", "Entrar", "padrao", false, true);
+                gerarInput("email", "email", "E-mail", "Insira seu e-mail...", $mainDir);
+                gerarInput("senha", "password", "Senha", "Insira sua senha...", $mainDir);
+                gerarButton("entrar", "Entrar", "padrao", true, $mainDir);
                 ?>
             </form>
 
