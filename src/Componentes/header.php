@@ -19,8 +19,8 @@ function gerarHeader(bool $admin, string $email, string $mainDir)
             <div class="container-conta hidden" id="container-conta">
             <p>Logado como:</p>
             <p><b>' . htmlspecialchars($email) . ($email == '' ? 'Deslogado' : '') . '</b></p>
-            <form action="logout.php">';
-    gerarButton("sair", "Sair", "cancelar", false, true);
+            <form action="'.$mainDir.'/logout.php">';
+    gerarButton("sair", "Sair", "cancelar", true, $mainDir);
     echo '</form></div></header>';
     echo '<script src="../js/header.js"></script>';
 }

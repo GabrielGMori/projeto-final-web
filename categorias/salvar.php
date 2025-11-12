@@ -18,6 +18,6 @@ if ($nome === '') {
 
 $repoCategoria = new CategoriaRepositorio($pdo);
 $repoCategoria->criar($nome);
-header('Location: ../categorias.php');
+header('Location: ../categorias');
 
 exit;

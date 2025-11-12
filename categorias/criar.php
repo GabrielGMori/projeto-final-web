@@ -6,9 +6,9 @@ if (!isset($_SESSION['email'])) {
 
 $erro = $_GET['erro'] ?? '';
 
-require_once 'src/Componentes/header.php';
-require_once 'src/Componentes/button.php';
-require_once 'src/Componentes/input.php';
+require_once '../src/Componentes/header.php';
+require_once '../src/Componentes/button.php';
+require_once '../src/Componentes/input.php';
 
 $mainDir = '..';
 ?>
@@ -34,11 +34,11 @@ $mainDir = '..';
     <main>
         <h1>Criar Categoria de Peças</h1>
         <section class="container-form">
-            <form action="categorias/criar.php" method="POST">
+            <form action="./salvar.php" method="POST">
                 <?php gerarInput("nome", "nome", "Nome", "Insira o nome da categoria...", $mainDir); ?>
                 <div class="acoesForm">
                     <?php
-                    gerarLink("categorias.php", "Cancelar", "cancelar", false);
+                    gerarLink(".", "Cancelar", "cancelar", false);
                     gerarButton("criar", "Criar", "padrao", false, true);
                     ?>
                 </div>

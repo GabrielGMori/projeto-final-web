@@ -49,8 +49,8 @@ gerarHeader(false, $_SESSION['email'], $mainDir);
                 echo '<div class="lista-item">
                         <p><b>' . $categoria->getNome() . '</b></p>
                         <div class="lista-item-acoes">
-                            <a href="?modo=editar&id=' . $categoria->getId() . '" class="lista-item-editar"><img src="img/Editar.png" alt="Editar"></img></a>
-                            <a href="?modo=excluir&id=' . $categoria->getId() . '" class="lista-item-excluir"><img src="img/Excluir.png" alt="Excluir"></img></a>
+                            <a href="?modo=editar&id=' . $categoria->getId() . '" class="lista-item-editar"><img src="../img/Editar.png" alt="Editar"></img></a>
+                            <a href="?modo=excluir&id=' . $categoria->getId() . '" class="lista-item-excluir"><img src="../img/Excluir.png" alt="Excluir"></img></a>
                         </div>
                     </div>';
             }
