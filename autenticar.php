@@ -24,8 +24,11 @@ if (!$repoUsuario->autenticar($email, $senha)) {
     exit;
 }
 
+$usuario = $repoUsuario->buscarPorEmail($email);
+
 session_regenerate_id(true);
 $_SESSION['email'] = $email;
+$_SESSION['permissao'] = $usuario->getPermissao();
 header('Location: categorias');
 
 exit;

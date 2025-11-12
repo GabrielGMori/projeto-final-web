@@ -22,7 +22,6 @@ if (isset($_GET['id'])) {
 }
 
 $mainDir = '..';
-gerarHeader(false, $_SESSION['email'], $mainDir);
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +40,8 @@ gerarHeader(false, $_SESSION['email'], $mainDir);
 </head>
 
 <body>
+    <?php gerarHeader($_SESSION['permissao'] == 'admin' ? true : false, false,  '', $mainDir); ?>
+
     <h1>Categorias de Peças</h1>
     <main>
         <div class="container-lista">

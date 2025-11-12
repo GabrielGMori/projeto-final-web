@@ -29,7 +29,7 @@ $mainDir = '.';
 </head>
 
 <body>
-    <?php gerarHeader(false, '', $mainDir); ?>
+    <?php gerarHeader(false, false, '', $mainDir); ?>
 
     <main>
         <h1>Login</h1>

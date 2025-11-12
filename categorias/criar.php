@@ -29,7 +29,7 @@ $mainDir = '..';
 </head>
 
 <body>
-    <?php gerarHeader(false, '', $mainDir); ?>
+    <?php gerarHeader($_SESSION['permissao'] == 'admin' ? true : false, false, '', $mainDir); ?>
 
     <main>
         <h1>Criar Categoria de Peças</h1>
