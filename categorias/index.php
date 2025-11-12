@@ -14,7 +14,15 @@ require_once '../src/Repositorio/CategoriaRepositorio.php';
 $erro = $_GET['erro'] ?? '';
 
 $repoCategoria = new CategoriaRepositorio($pdo);
-$categorias = $repoCategoria->listar();
+
+$limitePorPagina = isset($_GET['limite']) ? $_GET['limite'] : 10;
+$paginaAtual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+
+$total = $repoCategoria->contar();
+$offset = ($paginaAtual - 1) * $total;
+$totalPaginas = ceil($total / $limitePorPagina);
+
+$categorias = $repoCategoria->listarPaginado($limitePorPagina, $paginaAtual);
 
 if (isset($_GET['id'])) {
     $_GET['id'] = (int) $_GET['id'];

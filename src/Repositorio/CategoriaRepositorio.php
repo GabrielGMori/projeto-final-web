@@ -30,6 +30,23 @@ class CategoriaRepositorio
         return $dadosFormatados;
     }
 
+    public function listarPaginado(string $limite, string $offset): array
+    {
+        $sql = "SELECT id_pk, nome FROM categoria ORDER BY nome LIMIT ? OFFSET ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $limite);
+        $stmt->bindValue(2, $offset);
+        $stmt->execute();
+        $dados = $stmt->fetchAll();
+
+        $dadosFormatados = array();
+        for ($i = 0; $i < count($dados); $i++) {
+            $dadosFormatados[$i] = $this->formarObjeto($dados[$i]);
+        }
+        return $dadosFormatados;
+    }
+
     public function criar(string $nome): void
     {
         $sql = "INSERT INTO categoria(nome) VALUES (?)";
@@ -67,6 +84,16 @@ class CategoriaRepositorio
         $stmt->execute();
         $dados = $stmt->fetch();
         return $dados ? $this->formarObjeto($dados) : null;
+    }
+
+    public function contar() : int
+    {
+        $sql = "SELECT COUNT(*) AS total FROM categoria";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $dados = $stmt->fetch(PDO::FETCH_ASSOC);
+        return (int) $dados['total'];
     }
 
 }
