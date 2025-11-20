@@ -1,25 +1,26 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['email'])) {
     header('Location: ../login.php');
+    exit;
 }
 
 require_once '../src/Componentes/header.php';
 require_once '../src/Componentes/input.php';
 require_once '../src/Componentes/button.php';
-
 require_once '../src/conexao-bd.php';
 require_once '../src/Repositorio/PecaRepositorio.php';
 
-$erro = $_GET['erro'] ?? '';
+$categoriaId = (int)($_GET['categoria_id'] ?? 0);
+
+if ($categoriaId === 0) {
+    header('Location: ../categorias/index.php');
+    exit;
+}
 
 $repoPeca = new PecaRepositorio($pdo);
-$categorias = $repoCategoria->listar();
-
-if (isset($_GET['id'])) {
-    $_GET['id'] = (int) $_GET['id'];
-    $selecionado = $repoPeca->buscarPorId($_GET['id']);
-}
+$pecas = $repoPeca->listarPorCategoria($categoriaId);
 
 $mainDir = '..';
 ?>
@@ -29,68 +30,47 @@ $mainDir = '..';
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/lista.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Peças - Loja Roupas</title>
+    <title>Peças da Categoria</title>
 </head>
 
 <body>
-    <?php gerarHeader($_SESSION['permissao'] == 'admin' ? true : false, false,  '', $mainDir); ?>
+    <?php gerarHeader($_SESSION['permissao'] == 'admin' ? true : false, false, '', $mainDir); ?>
 
-    <h1>Categorias de Peças</h1>
+    <h1>Peças da Categoria</h1>
     <main>
         <div class="container-lista">
             <?php
-            foreach ($pecas as $peca) {
-                echo '<div class="lista-item">
-                        <p><b>' . $peca->getNome() . '</b></p>
-                        <div class="lista-item-acoes">
-                            <a href="?modo=editar&id=' . $peca->getId() . '" class="lista-item-editar"><img src="../img/Editar.png" alt="Editar"></img></a>
-                            <a href="?modo=excluir&id=' . $peca->getId() . '" class="lista-item-excluir"><img src="../img/Excluir.png" alt="Excluir"></img></a>
-                        </div>
-                    </div>';
+            if (empty($pecas)) {
+                echo '<p>Não há peças cadastradas para esta categoria.</p>';
+            } else {
+                foreach ($pecas as $peca) {
+                    echo '<div class="lista-item">
+                            <p><b>' . htmlspecialchars($peca->getNome()) . '</b> - Estoque: ' . $peca->getEstoque() . '</p>
+                            <div class="lista-item-acoes">
+                                <a href="editarPecas.php?id=' . $peca->getId() . '" class="lista-item-editar"><img src="../img/Editar.png" alt="Editar"></img></a>
+                                <a href="excluirPecas.php?id=' . $peca->getId() . '&categoria_id=' . $categoriaId . '" class="lista-item-excluir">
+                                    <img src="../img/Excluir.png" alt="Excluir">
+                                </a>
+                            </div>
+                        </div>';
+                }
             }
             ?>
         </div>
         <div class="container-direita">
-            <?php if (!isset($_GET['modo']) || !isset($_GET['id']) || $_GET['modo'] != 'editar' && $_GET['modo'] != 'excluir') : ?>
-                <a href="criar.php" class="botao-add" id="botao-add"><img src="../img/Add.png" alt="Adicionar"></a>
-
-            <?php elseif ($_GET['modo'] == 'editar') : ?>
-                <form class="container-editar" action="editar.php" method="POST">
-                    <input class="disabled" id="id" name="id" type="number" value=<?php echo $selecionado->getId(); ?>>
-                    <?php gerarInputComValue("nome", "text", "Nome", "Nome da peça", $selecionado->getNome(), $mainDir); ?>
-                    <div class="acoes">
-                        <?php
-                        gerarLink(".", "Cancelar", "cancelar", false);
-                        gerarButton("confirmar-editar", "Confirmar", "padrao", true, $mainDir);
-                        ?>
-                    </div>
-                    <?php if ($erro === 'campos-vazios'): ?>
-                        <p class="mensagem-erro">Por favor, preencha todos os campos.</p>
-                    <?php endif; ?>
-                </form>
-
-            <?php elseif ($_GET['modo'] == 'excluir') : ?>
-                <div class="container-excluir">
-                    <p>Isso irá excluir permanentemente:</p>
-                    <br>
-                    <p><b><?php echo htmlspecialchars($selecionado->getNome()); ?></b></p>
-                    <br>
-                    <div class="acoes">
-                        <?php
-                        gerarLink(".", "Cancelar", "cancelar", false);
-                        gerarLink('excluir.php?id=' . $selecionado->getId() . '', "Confirmar", "padrao", false);
-                        ?>
-                    </div>
+            <form action="salvarPecas.php" method="POST">
+                <input type="hidden" name="categoria_id" value="<?php echo $categoriaId; ?>">
+                <?php gerarInput("nome", "nome", "Nome", "Insira o nome da peça...", $mainDir); ?>
+                <?php gerarInput("estoque", "estoque", "Estoque", "Insira a quantidade em estoque...", $mainDir); ?>
+                <div class="acoesForm">
+                    <?php gerarButton("criar", "Adicionar Peça", "padrao", false, true); ?>
                 </div>
-
-            <?php endif; ?>
+            </form>
         </div>
     </main>
 </body>
+
+</html>

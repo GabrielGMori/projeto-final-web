@@ -10,14 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $nome = trim($_POST['nome'] ?? '');
+$estoque = (int)($_POST['estoque'] ?? 1);
 
 if ($nome === '') {
     header('Location: ../pecas?modo=editar&id='.$_POST['id'].'&erro=campos-vazios');
     exit;
 }
 
-$repoCategoria = new PecaRepositorio($pdo);
-$repoCategoria->editar(new Peca($_POST['id'], $_POST['nome'], $_POST['estoque']));
+$repoPeca = new PecaRepositorio($pdo);
+$repoPeca->editar(new Peca($_POST['id'], $_POST['nome'], $_POST['estoque']));
 header('Location: ../pecas');
 
 exit;

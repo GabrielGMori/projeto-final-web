@@ -48,7 +48,7 @@ $mainDir = '..';
             <?php
             foreach ($categorias as $categoria) {
                 echo '<div class="lista-item">
-                        <p><b>' . $categoria->getNome() . '</b></p>
+                        <p><b><a href="../pecas/indexPecas.php?categoria_id=' . $categoria->getId() . '">' . $categoria->getNome() . '</a></b></p>
                         <div class="lista-item-acoes">
                             <a href="?modo=editar&id=' . $categoria->getId() . '" class="lista-item-editar"><img src="../img/Editar.png" alt="Editar"></img></a>
                             <a href="?modo=excluir&id=' . $categoria->getId() . '" class="lista-item-excluir"><img src="../img/Excluir.png" alt="Excluir"></img></a>

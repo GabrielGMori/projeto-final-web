@@ -1,5 +1,5 @@
 <?php
-class Usuario
+class Peca
 {
     private int $id;
     private string $nome;

@@ -2,15 +2,15 @@
 session_start();
 
 require_once __DIR__ . '/../src/conexao-bd.php';
-require_once __DIR__ . '/../src/Repositorio/CategoriaRepositorio.php';
+require_once __DIR__ . '/../src/Repositorio/PecaRepositorio.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-    header('Location: ../categorias');
+    header('Location: ../pecas');
     exit;
 }
 
-$repoCategoria = new CategoriaRepositorio($pdo);
-$repoCategoria->remover($_GET['id']);
-header('Location: ../categorias');
+$repoPeca = new PecaRepositorio($pdo);
+$repoPeca->remover($_GET['id']);
+header('Location: indexPecas.php?categoria_id=' . $categoriaId);
 
 exit;
