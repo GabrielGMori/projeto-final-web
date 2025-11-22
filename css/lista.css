@@ -125,14 +125,6 @@ footer {
     margin-top: 15px;
 }
 
-.bloco-link {
-    display: block; /* Faz o link ocupar todo o espaço do bloco */
-    text-decoration: none; /* Remove o sublinhado do texto */
-    color: inherit; /* Herda a cor do texto do bloco */
-    width: 100%; /* Garante que o link ocupe toda a largura do bloco */
-    height: 100%; /* Garante que o link ocupe toda a altura do bloco */
-}
-
 .botao-voltar {
     position: relative; 
     margin-right: 20px; 

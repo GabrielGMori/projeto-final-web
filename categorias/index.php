@@ -59,9 +59,7 @@ $mainDir = '..';
             foreach ($categorias as $categoria) {
             echo '<div class="lista-item">
 
-            <a href="../pecas/indexPecas.php?categoria_id=' . $categoria->getId() . '" class="bloco-link">
-                <p><b>' . $categoria->getNome() . '</b></p>
-            </a>
+            <a href="../pecas/indexPecas.php?categoria_id=' . $categoria->getId() . '">' . $categoria->getNome() . '</a>
 
             <div class="lista-item-acoes">
                 <a href="' . criarParamsGet("editar", $categoria->getId(), $limitePorPagina, $paginaAtual) . '" class="lista-item-editar">
