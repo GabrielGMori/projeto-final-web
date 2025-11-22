@@ -80,6 +80,38 @@ main {
     gap: 15px;
 }
 
+footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.form-limite {
+    font-family: 'Lato', Arial, sans-serif;
+    color: var(--branco);
+    font-weight: bold;
+}
+
+.form-limite select {
+    font-family: 'Lato', Arial, sans-serif;
+    color: var(--preto);
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.paginacao-disabled {
+    font-family: 'Lato', Arial, sans-serif;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: normal;
+    color: var(--cinza-claro);
+    padding: 5px 8px;
+    margin: 1px;
+}
+
 .mensagem-erro {
     margin-top: 15px;
 } 

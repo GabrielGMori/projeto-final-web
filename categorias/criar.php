@@ -38,8 +38,8 @@ $mainDir = '..';
                 <?php gerarInput("nome", "nome", "Nome", "Insira o nome da categoria...", $mainDir); ?>
                 <div class="acoesForm">
                     <?php
-                    gerarLink(".", "Cancelar", "cancelar", false);
-                    gerarButton("criar", "Criar", "padrao", false, true);
+                    gerarLink(".", "Cancelar", "cancelar", $mainDir);
+                    gerarButton("criar", "Criar", "padrao", false, $mainDir);
                     ?>
                 </div>
 

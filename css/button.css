@@ -21,3 +21,10 @@
 .botao-cancelar {
     background-color: var(--vermelho);
 }
+
+.botao-paginacao {
+    background-color: none;
+    box-shadow: none;
+    font-size: 18px;
+    padding: 5px 8px;
+}

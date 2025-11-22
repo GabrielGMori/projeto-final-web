@@ -6,13 +6,13 @@ function gerarHeader(bool $mostrarUsuarios, string $estiloAdmin, string $email, 
     echo '<link rel="stylesheet" href="'. $mainDir .'/css/header.css">';
     echo '<header class="header-principal header-' . ($estiloAdmin == true ? 'admin' : 'user') . '">
             <div class="container-principal">
-                <a href="categorias" class="botao-logo"><img src="'. $mainDir .'/img/Logo.png" alt="Início"></a>
+                <a href="'. $mainDir .'/categorias" class="botao-logo"><img src="'. $mainDir .'/img/Logo.png" alt="Início"></a>
                 <nav>
-                    <a href="categorias">Peças</a>
-                    <a href="vendas">Vendas</a>
-                    <a href="reposicoes">Reposições</a>
-                    <a href="relatorios">Relatórios</a>
-                    ' . ($mostrarUsuarios == true ? '<a href="usuarios">Usuários</a>' : '') . '
+                    <a href="'. $mainDir .'/categorias">Peças</a>
+                    <a href="'. $mainDir .'/vendas">Vendas</a>
+                    <a href="'. $mainDir .'/reposicoes">Reposições</a>
+                    <a href="'. $mainDir .'/relatorios">Relatórios</a>
+                    ' . ($mostrarUsuarios == true ? '<a href="'. $mainDir .'/usuarios">Usuários</a>' : '') . '
                 </nav>
                 <button class="botao-conta '.($email == '' ? 'hidden' : '').'" id="botao-conta"><img src="'. $mainDir .'/img/Conta.png" alt="Conta"></button>
             </div>
