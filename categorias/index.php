@@ -22,7 +22,6 @@ $paginaAtual = isset($_GET['pagina']) && $_GET['pagina'] > 0 ? $_GET['pagina'] :
 
 $total = $repoCategoria->contar();
 $offset = ($paginaAtual - 1) * $limitePorPagina;
-var_dump($offset);
 $totalPaginas = ceil($total / $limitePorPagina);
 
 $categorias = $repoCategoria->listarPaginado($limitePorPagina, $offset);
