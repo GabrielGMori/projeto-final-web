@@ -58,13 +58,22 @@ $mainDir = '..';
         <div class="container-lista">
             <?php
             foreach ($categorias as $categoria) {
-                echo '<div class="lista-item">
-                        <a href="../pecas/indexPecas.php?categoria_id=' . $categoria->getId() . '">' . $categoria->getNome() . '</a>
-                        <div class="lista-item-acoes">
-                            <a href="' . criarParamsGet("editar", $categoria->getId(), $limitePorPagina, $paginaAtual) . '" class="lista-item-editar"><img src="../img/Editar.png" alt="Editar"></img></a>
-                            <a href="' . criarParamsGet("excluir", $categoria->getId(), $limitePorPagina, $paginaAtual) . '" class="lista-item-excluir"><img src="../img/Excluir.png" alt="Excluir"></img></a>
-                        </div>
-                    </div>';
+            echo '<div class="lista-item">
+
+            <a href="../pecas/indexPecas.php?categoria_id=' . $categoria->getId() . '" class="bloco-link">
+                <p><b>' . $categoria->getNome() . '</b></p>
+            </a>
+
+            <div class="lista-item-acoes">
+                <a href="' . criarParamsGet("editar", $categoria->getId(), $limitePorPagina, $paginaAtual) . '" class="lista-item-editar">
+                    <img src="../img/Editar.png" alt="Editar">
+                </a>
+
+                <a href="' . criarParamsGet("excluir", $categoria->getId(), $limitePorPagina, $paginaAtual) . '" class="lista-item-excluir">
+                    <img src="../img/Excluir.png" alt="Excluir">
+                </a>
+            </div>
+            </div>';
             }
             ?>
         </div>

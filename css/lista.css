@@ -123,4 +123,39 @@ footer {
 
 .mensagem-erro {
     margin-top: 15px;
-} 
+}
+
+.bloco-link {
+    display: block; /* Faz o link ocupar todo o espaço do bloco */
+    text-decoration: none; /* Remove o sublinhado do texto */
+    color: inherit; /* Herda a cor do texto do bloco */
+    width: 100%; /* Garante que o link ocupe toda a largura do bloco */
+    height: 100%; /* Garante que o link ocupe toda a altura do bloco */
+}
+
+.botao-voltar {
+    position: relative; 
+    margin-right: 20px; 
+    margin-top: 10px; 
+    background-color: var(--marca);
+    border-radius: 10px;
+    padding: 5px 10px; 
+    box-shadow: 1px 1px 4px 1px black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    width: fit-content; 
+    height: auto;
+}
+
+.botao-voltar:hover {
+    background-color: rgb(93, 39, 104); 
+    cursor: pointer;
+}
+
+.botao-voltar img {
+    width: 20px; 
+    height: 20px;
+}

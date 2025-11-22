@@ -17,7 +17,7 @@ class PecaRepositorio
 
     public function listar(): array
     {
-        $sql = "SELECT id_pk, nome FROM peca ORDER BY nome";
+        $sql = "SELECT id_pk, nome, estoque FROM peca ORDER BY nome";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
@@ -32,7 +32,7 @@ class PecaRepositorio
 
     public function listarPorCategoria(int $categoriaId): array
     {
-    $sql = "SELECT id_pk, nome, estoque FROM peca WHERE Categoria_id_pk = ? ORDER BY nome";
+    $sql = "SELECT id_pk, nome, estoque FROM peca WHERE Categoria_id_pk = ? ORDER BY Categoria_id_pk";
 
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(1, $categoriaId);
@@ -82,7 +82,7 @@ class PecaRepositorio
 
     public function buscarPorId(int $id): ?Peca
     {
-        $sql = "SELECT id_pk, nome FROM peca WHERE id_pk = ?";
+        $sql = "SELECT id_pk, nome, estoque FROM peca WHERE id_pk = ?";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);

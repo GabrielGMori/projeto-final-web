@@ -13,12 +13,13 @@ $nome = trim($_POST['nome'] ?? '');
 $estoque = (int)($_POST['estoque'] ?? 1);
 
 if ($nome === '') {
-    header('Location: ../pecas?modo=editar&id='.$_POST['id'].'&erro=campos-vazios');
+    header('Location: ../pecas?modo=editarPecas&id='.$_POST['id'].'&erro=campos-vazios');
     exit;
 }
 
 $repoPeca = new PecaRepositorio($pdo);
 $repoPeca->editar(new Peca($_POST['id'], $_POST['nome'], $_POST['estoque']));
-header('Location: ../pecas');
+$categoriaId = (int)($_POST['categoria_id'] ?? 0);
+header('Location: indexPecas.php?categoria_id=' . $categoriaId);
 
 exit;

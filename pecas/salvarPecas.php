@@ -5,7 +5,7 @@ require_once __DIR__ . '/../src/conexao-bd.php';
 require_once __DIR__ . '/../src/Repositorio/PecaRepositorio.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../categorias/index.php');
+    header('Location: ../pecas/indexPecas.php');
     exit;
 }
 
@@ -14,7 +14,7 @@ $estoque = (int)($_POST['estoque'] ?? 1);
 $categoriaId = (int)($_POST['categoria_id'] ?? 0);
 
 if ($nome === '' || $categoriaId === 0) {
-    header('Location: ../categorias/index.php?erro=campos-vazios');
+    header('Location: ../pecas/indexPecas.php?erro=campos-vazios');
     exit;
 }
 

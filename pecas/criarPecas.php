@@ -35,6 +35,7 @@ $mainDir = '..';
         <h1>Criar Peças (Acessórios)</h1>
         <section class="container-form">
             <form action="./salvarPecas.php" method="POST">
+                <input type="hidden" name="categoria_id" value="<?= htmlspecialchars($_GET['categoria_id'] ?? 0) ?>">
                 <?php gerarInput("nome", "nome", "Nome", "Insira o nome da categoria...", $mainDir); ?>
                 <?php gerarInput("estoque", "estoque", "Estoque", "Insira a quantidade em estoque...", $mainDir); ?>
                 <div class="acoesForm">
@@ -42,7 +43,8 @@ $mainDir = '..';
                     gerarLink(".", "Cancelar", "cancelar", false);
                     gerarButton("criar", "Criar", "padrao", false, true);
                     ?>
-                </div>
+    </div>
+</form>
                 
 
             </form>
