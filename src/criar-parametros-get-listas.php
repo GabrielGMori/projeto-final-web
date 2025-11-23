@@ -1,6 +1,6 @@
 <?php
 
-function criarParamsGet(?string $modo, ?int $id, int $limite, int $pagina) : string {
+function criarParamsGet(?string $modo, ?int $id, int $limite, int $pagina, ?int $categoriaId) : string {
     $limite = $limite == 10 ? null : $limite;
     $pagina = $pagina == 1 ? null : $pagina;
 
@@ -20,6 +20,10 @@ function criarParamsGet(?string $modo, ?int $id, int $limite, int $pagina) : str
     if ($pagina != null) {
         $params = strlen($params) == 0 ? "?" : $params . "&";
         $params = $params . "pagina=" . $pagina;
+    }
+    if ($categoriaId != null) {
+        $params = strlen($params) == 0 ? "?" : $params . "&";
+        $params = $params . "categoria_id=" . $categoriaId;
     }
 
     return $params;

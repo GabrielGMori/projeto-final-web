@@ -18,7 +18,7 @@ INSERT INTO categoria (nome) VALUES
 -- -----------------------------
 -- Peças
 -- -----------------------------
-INSERT INTO peca (nome, estoque, Categoria_id_pk) VALUES
+INSERT INTO peca (nome, estoque, Categoria_id_fk) VALUES
 ('Camiseta Branca', 50, 1),
 ('Camiseta Preta', 40, 1),
 ('Camiseta Vermelha', 35, 1),

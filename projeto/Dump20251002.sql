@@ -51,10 +51,10 @@ CREATE TABLE `peca` (
   `id_pk` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `estoque` int(11) NOT NULL,
-  `Categoria_id_pk` int(11) NOT NULL,
+  `Categoria_id_fk` int(11) NOT NULL,
   PRIMARY KEY (`id_pk`),
-  KEY `fk_Peca_Categoria` (`Categoria_id_pk`),
-  CONSTRAINT `fk_Peca_Categoria` FOREIGN KEY (`Categoria_id_pk`) REFERENCES `categoria` (`id_pk`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_Peca_Categoria` (`Categoria_id_fk`),
+  CONSTRAINT `fk_Peca_Categoria` FOREIGN KEY (`Categoria_id_fk`) REFERENCES `categoria` (`id_pk`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -100,7 +100,7 @@ DROP TABLE IF EXISTS `reposicao_tem_peca`;
 CREATE TABLE `reposicao_tem_peca` (
   `Reposicao_id_fk_pk` int(11) NOT NULL,
   `Peca_id_fk_pk` int(11) NOT NULL,
-  `preco` decimal(2,0) NOT NULL,
+  `preco` decimal(10,2) NOT NULL,
   `quantidade` int(11) NOT NULL,
   PRIMARY KEY (`Reposicao_id_fk_pk`,`Peca_id_fk_pk`),
   KEY `fk_Reposicao_has_Peca_Peca1` (`Peca_id_fk_pk`),
@@ -176,7 +176,7 @@ DROP TABLE IF EXISTS `venda_tem_peca`;
 CREATE TABLE `venda_tem_peca` (
   `Venda_id_fk_pk` int(11) NOT NULL,
   `Peca_id_fk_pk` int(11) NOT NULL,
-  `preco` decimal(2,0) NOT NULL,
+  `preco` decimal(10,2) NOT NULL,
   `quantidade` int(11) NOT NULL,
   PRIMARY KEY (`Venda_id_fk_pk`,`Peca_id_fk_pk`),
   KEY `fk_Venda_has_Peca_Peca1` (`Peca_id_fk_pk`),

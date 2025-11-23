@@ -9,26 +9,39 @@ require_once '../src/Componentes/input.php';
 require_once '../src/Componentes/button.php';
 
 require_once '../src/conexao-bd.php';
+require_once '../src/Repositorio/PecaRepositorio.php';
 require_once '../src/Repositorio/CategoriaRepositorio.php';
 
 require_once '../src/criar-parametros-get-listas.php';
 
 $erro = $_GET['erro'] ?? '';
 
+$repoPeca = new PecaRepositorio($pdo);
 $repoCategoria = new CategoriaRepositorio($pdo);
+
+if (!isset($_GET['categoria_id'])) {
+    header('Location: ../categorias');
+}
+
+$categoriaId = (int)$_GET['categoria_id'];
+$categoria = $repoCategoria->buscarPorId($categoriaId);
+
+if (!isset($categoria)) {
+    header('Location: ../categorias');
+}
 
 $limitePorPagina = isset($_GET['limite']) ? $_GET['limite'] : 10;
 $paginaAtual = isset($_GET['pagina']) && $_GET['pagina'] > 0 ? $_GET['pagina'] : 1;
 
-$total = $repoCategoria->contar();
+$total = $repoPeca->contarPorCategoria($categoriaId);
 $offset = ($paginaAtual - 1) * $limitePorPagina;
 $totalPaginas = ceil($total / $limitePorPagina);
 
-$categorias = $repoCategoria->listarPaginado($limitePorPagina, $offset);
+$pecas = $repoPeca->listarPaginadoPorCategoria($categoriaId, $limitePorPagina, $offset);
 
 if (isset($_GET['id'])) {
     $_GET['id'] = (int) $_GET['id'];
-    $selecionado = $repoCategoria->buscarPorId($_GET['id']);
+    $selecionado = $repoPeca->buscarPorId($_GET['id']);
 }
 
 $mainDir = '..';
@@ -52,21 +65,24 @@ $mainDir = '..';
 <body>
     <?php gerarHeader($_SESSION['permissao'] == 'admin' ? true : false, false,  '', $mainDir); ?>
 
-    <h1>Categorias de Peças</h1>
+    <h1><?= htmlspecialchars($categoria->getNome()) ?></h1>
     <main>
+        <div class="container-voltar">
+            <?php gerarLink('../categorias', "<", "padrao", $mainDir); ?>
+        </div>
         <div class="container-lista">
             <?php
-            foreach ($categorias as $categoria) {
+            foreach ($pecas as $peca) {
                 echo '<div class="lista-item">
 
-            <a href="../pecas/?categoria_id=' . $categoria->getId() . '">' . $categoria->getNome() . '</a>
+            <a href="">' . $peca->getNome() . ' <span>x' . $peca->getEstoque() . '</span></a>
 
             <div class="lista-item-acoes">
-                <a href="' . criarParamsGet("editar", $categoria->getId(), $limitePorPagina, $paginaAtual, null) . '" class="lista-item-editar">
+                <a href="' . criarParamsGet("editar", $peca->getId(), $limitePorPagina, $paginaAtual, $categoriaId) . '" class="lista-item-editar">
                     <img src="../img/Editar.png" alt="Editar">
                 </a>
 
-                <a href="' . criarParamsGet("excluir", $categoria->getId(), $limitePorPagina, $paginaAtual, null) . '" class="lista-item-excluir">
+                <a href="' . criarParamsGet("excluir", $peca->getId(), $limitePorPagina, $paginaAtual, $categoriaId) . '" class="lista-item-excluir">
                     <img src="../img/Excluir.png" alt="Excluir">
                 </a>
             </div>
@@ -76,15 +92,17 @@ $mainDir = '..';
         </div>
         <div class="container-direita">
             <?php if (!isset($_GET['modo']) || !isset($_GET['id']) || $_GET['modo'] != 'editar' && $_GET['modo'] != 'excluir') : ?>
-                <a href="criar.php" class="botao-add" id="botao-add"><img src="../img/Add.png" alt="Adicionar"></a>
+                <a href="criar.php?categoria_id=<?= htmlspecialchars($categoriaId) ?>" class="botao-add" id="botao-add"><img src="../img/Add.png" alt="Adicionar"></a>
 
             <?php elseif ($_GET['modo'] == 'editar') : ?>
                 <form class="container-editar" action="editar.php" method="POST">
+                    <input class="disabled" name="categoria_id" value="<?= htmlspecialchars($categoriaId) ?>" />
                     <input class="disabled" id="id" name="id" type="number" value=<?php echo $selecionado->getId(); ?>>
-                    <?php gerarInputComValue("nome", "text", "Nome", "Nome da categoria", $selecionado->getNome(), $mainDir); ?>
+                    <?php gerarInputComValue("nome", "text", "Nome", "Nome da peça", $selecionado->getNome(), $mainDir); ?>
+                    <?php gerarInputComValue("estoque", "text", "Estoque", "Quantidade de estoque", $selecionado->getEstoque(), $mainDir); ?>
                     <div class="acoes">
                         <?php
-                        gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $paginaAtual, null), "Cancelar", "cancelar", $mainDir);
+                        gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $paginaAtual, $categoriaId), "Cancelar", "cancelar", $mainDir);
                         gerarButton("confirmar-editar", "Confirmar", "padrao", true, $mainDir);
                         ?>
                     </div>
@@ -101,8 +119,8 @@ $mainDir = '..';
                     <br>
                     <div class="acoes">
                         <?php
-                        gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $paginaAtual, null), "Cancelar", "cancelar", $mainDir);
-                        gerarLink('excluir.php?id=' . $selecionado->getId() . '', "Confirmar", "padrao", $mainDir);
+                        gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $paginaAtual, $categoriaId), "Cancelar", "cancelar", $mainDir);
+                        gerarLink('excluir.php?categoria_id=' . $categoriaId . '&id=' . $selecionado->getId() . '', "Confirmar", "padrao", $mainDir);
                         ?>
                     </div>
                 </div>
@@ -113,6 +131,7 @@ $mainDir = '..';
     <footer>
         <div class="container-limite">
             <form class="form-limite" method="GET" action=".">
+                <input class="disabled" name="categoria_id" value="<?= htmlspecialchars($categoriaId) ?>" />
                 <label for="limite">Itens por página:</label>
                 <select name="limite" id="limite" onchange="this.form.submit()">
                     <option value="5" <?= $limitePorPagina == 5 ? 'selected' : '' ?>>5</option>
@@ -128,8 +147,8 @@ $mainDir = '..';
             <?php if ($totalPaginas > 1): ?>
                 <?php
                 if ($paginaAtual > 1):
-                    gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $paginaAtual - 1, null), "<", "paginacao", $mainDir);
-                    gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, 1, null), "1", "paginacao", $mainDir);
+                    gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $paginaAtual - 1, $categoriaId), "<", "paginacao", $mainDir);
+                    gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, 1, $categoriaId), "1", "paginacao", $mainDir);
                 else: ?>
                     <span class="paginacao-disabled"><</span>
                             <span class="paginacao-disabled">1</span>
@@ -145,7 +164,7 @@ $mainDir = '..';
                                     <span class="paginacao-disabled"><?= $i ?></span>
                                 <?php
                                 else:
-                                    gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $i, null), $i, "paginacao", $mainDir);
+                                    gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $i, $categoriaId), $i, "paginacao", $mainDir);
                                 endif;
                             endif;
                         endfor;
@@ -156,7 +175,7 @@ $mainDir = '..';
                                     <span class="paginacao-disabled"><?= $i ?></span>
                             <?php
                                 else:
-                                    gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $i, null), $i, "paginacao", $mainDir);
+                                    gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $i, $categoriaId), $i, "paginacao", $mainDir);
                                 endif;
                             endif;
                         endfor;
@@ -166,8 +185,8 @@ $mainDir = '..';
                         <?php endif;
 
                         if ($paginaAtual < $totalPaginas):
-                            gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $totalPaginas, null), $totalPaginas, "paginacao", $mainDir);
-                            gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $paginaAtual + 1, null), ">", "paginacao", $mainDir);
+                            gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $totalPaginas, $categoriaId), $totalPaginas, "paginacao", $mainDir);
+                            gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $paginaAtual + 1, $categoriaId), ">", "paginacao", $mainDir);
                         else: ?>
                             <span class="paginacao-disabled"><?= $totalPaginas ?></span>
                             <span class="paginacao-disabled">></span>

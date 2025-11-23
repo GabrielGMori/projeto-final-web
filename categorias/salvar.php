@@ -5,14 +5,14 @@ require_once __DIR__ . '/../src/conexao-bd.php';
 require_once __DIR__ . '/../src/Repositorio/CategoriaRepositorio.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../criar-categoria.php');
+    header('Location: ../categorias');
     exit;
 }
 
 $nome = trim($_POST['nome'] ?? '');
 
 if ($nome === '') {
-    header('Location: ../criar-categoria.php?erro=campos-vazios');
+    header('Location: ./criar.php?erro=campos-vazios');
     exit;
 }
 
