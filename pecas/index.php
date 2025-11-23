@@ -63,7 +63,7 @@ $mainDir = '..';
 </head>
 
 <body>
-    <?php gerarHeader($_SESSION['permissao'] == 'admin' ? true : false, false,  '', $mainDir); ?>
+    <?php gerarHeader($_SESSION['permissao'] == 'admin' ? true : false, false,  $_SESSION['email'], $mainDir); ?>
 
     <h1><?= htmlspecialchars($categoria->getNome()) ?></h1>
     <main>
