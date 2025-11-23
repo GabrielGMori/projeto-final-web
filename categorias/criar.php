@@ -35,7 +35,7 @@ $mainDir = '..';
         <h1>Criar Categoria de Peças</h1>
         <section class="container-form">
             <form action="./salvar.php" method="POST">
-                <?php gerarInput("nome", "nome", "Nome", "Insira o nome da categoria...", $mainDir); ?>
+                <?php gerarInput("nome", "text", "Nome", "Insira o nome da categoria...", $mainDir); ?>
                 <div class="acoesForm">
                     <?php
                     gerarLink(".", "Cancelar", "cancelar", $mainDir);

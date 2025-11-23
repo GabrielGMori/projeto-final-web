@@ -99,7 +99,7 @@ $mainDir = '..';
                     <input class="disabled" name="categoria_id" value="<?= htmlspecialchars($categoriaId) ?>" />
                     <input class="disabled" id="id" name="id" type="number" value=<?php echo $selecionado->getId(); ?>>
                     <?php gerarInputComValue("nome", "text", "Nome", "Nome da peça", $selecionado->getNome(), $mainDir); ?>
-                    <?php gerarInputComValue("estoque", "text", "Estoque", "Quantidade de estoque", $selecionado->getEstoque(), $mainDir); ?>
+                    <?php gerarInputComValue("estoque", "number", "Estoque", "Quantidade de estoque", $selecionado->getEstoque(), $mainDir); ?>
                     <div class="acoes">
                         <?php
                         gerarLink('.' . criarParamsGet(null, null, $limitePorPagina, $paginaAtual, $categoriaId), "Cancelar", "cancelar", $mainDir);

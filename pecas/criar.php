@@ -52,8 +52,8 @@ $mainDir = '..';
         <section class="container-form">
             <form action="./salvar.php" method="POST">
                 <input class="disabled" name="categoria_id" value="<?= htmlspecialchars($categoriaId) ?>" />
-                <?php gerarInput("nome", "nome", "Nome", "Insira o nome da peça...", $mainDir); ?>
-                <?php gerarInput("estoque", "estoque", "Estoque inicial", "Insira a quantidade de estoque...", $mainDir); ?>
+                <?php gerarInput("nome", "text", "Nome", "Insira o nome da peça...", $mainDir); ?>
+                <?php gerarInput("estoque", "number", "Estoque inicial", "Insira a quantidade de estoque...", $mainDir); ?>
                 <div class="acoesForm">
                     <?php
                     gerarLink(".?categoria_id=".$categoriaId, "Cancelar", "cancelar", $mainDir);
