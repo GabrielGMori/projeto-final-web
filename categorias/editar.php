@@ -4,7 +4,7 @@ require_once __DIR__ . '/../src/conexao-bd.php';
 require_once __DIR__ . '/../src/Modelo/Categoria.php';
 require_once __DIR__ . '/../src/Repositorio/CategoriaRepositorio.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['id'])) {
     header('Location: ../categorias');
     exit;
 }
@@ -17,7 +17,7 @@ if ($nome === '') {
 }
 
 $repoCategoria = new CategoriaRepositorio($pdo);
-$repoCategoria->editar(new Categoria($_POST['id'], $_POST['nome']));
+$repoCategoria->editar(new Categoria($_POST['id'], $nome));
 header('Location: ../categorias');
 
 exit;

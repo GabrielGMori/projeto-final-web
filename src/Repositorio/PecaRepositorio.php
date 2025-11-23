@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/../Modelo/Categoria.php';
+require_once __DIR__ . '/../Modelo/Peca.php';
 
-class CategoriaRepositorio
+class PecaRepositorio
 {
     private PDO $pdo;
 
@@ -10,14 +10,14 @@ class CategoriaRepositorio
         $this->pdo = $pdo;
     }
 
-    public function formarObjeto(array $dados): Categoria
+    public function formarObjeto(array $dados): Peca
     {
-        return new Categoria((int)$dados['id_pk'], $dados['nome']);
+        return new Peca((int)$dados['id_pk'], $dados['nome'], (int)$dados['estoque'], (int)$dados['Categoria_id_fk']);
     }
 
     public function listar(): array
     {
-        $sql = "SELECT id_pk, nome FROM categoria ORDER BY nome";
+        $sql = "SELECT id_pk, nome, estoque, Categoria_id_fk FROM peca ORDER BY nome";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
@@ -30,13 +30,14 @@ class CategoriaRepositorio
         return $dadosFormatados;
     }
 
-    public function listarPaginado(string $limite, string $offset): array
+    public function listarPaginadoPorCategoria(int $categoriaId, string $limite, string $offset): array
     {
-        $sql = "SELECT id_pk, nome FROM categoria ORDER BY nome LIMIT ? OFFSET ?";
+        $sql = "SELECT id_pk, nome, estoque, Categoria_id_fk FROM peca WHERE Categoria_id_fk = ? ORDER BY nome LIMIT ? OFFSET ?";
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(1, $limite);
-        $stmt->bindValue(2, $offset);
+        $stmt->bindValue(1, $categoriaId);
+        $stmt->bindValue(2, $limite);
+        $stmt->bindValue(3, $offset);
         $stmt->execute();
         $dados = $stmt->fetchAll();
 
@@ -47,37 +48,40 @@ class CategoriaRepositorio
         return $dadosFormatados;
     }
 
-    public function criar(string $nome): void
+    public function criar(string $nome, int $estoque, int $categoriaId): void
     {
-        $sql = "INSERT INTO categoria(nome) VALUES (?)";
+        $sql = "INSERT INTO peca(nome, estoque, Categoria_id_fk) VALUES (?, ?, ?)";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $nome);
+        $stmt->bindValue(2, $estoque);
+        $stmt->bindValue(3, $categoriaId);
         $stmt->execute();
     }
 
     public function remover(int $id): void
     {
-        $sql = "DELETE FROM categoria WHERE id_pk = ?";
+        $sql = "DELETE FROM peca WHERE id_pk = ?";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
         $stmt->execute();
     }
 
-    public function editar(Categoria $categoria): void
+    public function editar(Peca $categoria): void
     {
-        $sql = "UPDATE categoria SET nome = ? WHERE id_pk = ?";
+        $sql = "UPDATE peca SET nome = ?, estoque = ? WHERE id_pk = ?";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria->getNome());
-        $stmt->bindValue(2, $categoria->getId());
+        $stmt->bindValue(2, $categoria->getEstoque());
+        $stmt->bindValue(3, $categoria->getId());
         $stmt->execute();
     }
 
-    public function buscarPorId(int $id): ?Categoria
+    public function buscarPorId(int $id): ?Peca
     {
-        $sql = "SELECT id_pk, nome FROM categoria WHERE id_pk = ?";
+        $sql = "SELECT id_pk, nome, estoque, Categoria_id_fk FROM peca WHERE id_pk = ?";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -86,11 +90,12 @@ class CategoriaRepositorio
         return $dados ? $this->formarObjeto($dados) : null;
     }
 
-    public function contar() : int
+    public function contarPorCategoria(int $categoriaId) : int
     {
-        $sql = "SELECT COUNT(*) AS total FROM categoria";
+        $sql = "SELECT COUNT(*) AS total FROM peca WHERE Categoria_id_fk = ?";
 
         $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $categoriaId);
         $stmt->execute();
         $dados = $stmt->fetch(PDO::FETCH_ASSOC);
         return (int) $dados['total'];
