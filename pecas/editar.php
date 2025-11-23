@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header('Location: login.php');
+}
 
 require_once __DIR__ . '/../src/conexao-bd.php';
 require_once __DIR__ . '/../src/Modelo/Peca.php';
