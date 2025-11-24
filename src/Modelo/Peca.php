@@ -4,13 +4,15 @@ class Peca
     private int $id;
     private string $nome;
     private int $estoque;
+    private ?string $imagem;
     private int $categoriaId;
 
-    public function __construct(int $id, string $nome, int $estoque, int $categoriaId)
+    public function __construct(int $id, string $nome, int $estoque, ?string $imagem, int $categoriaId)
     {
         $this->id = $id;
         $this->nome = $nome;
         $this->estoque = $estoque;
+        $this->imagem = $imagem;
         $this->categoriaId = $categoriaId;
     }
 
@@ -27,6 +29,11 @@ class Peca
     public function getEstoque(): int
     {
         return $this->estoque;
+    }
+
+    public function getImagem(): ?string
+    {
+        return $this->imagem;
     }
 
     public function getCategoriaId(): int

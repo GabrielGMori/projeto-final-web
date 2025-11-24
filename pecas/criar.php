@@ -40,6 +40,7 @@ $mainDir = '..';
     <link rel="stylesheet" href="../css/form.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <title>Criar Peça</title>
 </head>
@@ -50,10 +51,11 @@ $mainDir = '..';
     <main>
         <h1>Criar Peça (<?= htmlspecialchars($categoria->getNome()) ?>)</h1>
         <section class="container-form">
-            <form action="./salvar.php" method="POST">
+            <form action="./salvar.php" method="POST" enctype="multipart/form-data">
                 <input class="disabled" name="categoria_id" value="<?= htmlspecialchars($categoriaId) ?>" />
                 <?php gerarInput("nome", "text", "Nome", "Insira o nome da peça...", $mainDir); ?>
                 <?php gerarInput("estoque", "number", "Estoque inicial", "Insira a quantidade de estoque...", $mainDir); ?>
+                <?php gerarInputImagem("imagem", "image/*", "Imagem da peça (Opcional):", $mainDir) ?>
                 <div class="acoesForm">
                     <?php
                     gerarLink(".?categoria_id=".$categoriaId, "Cancelar", "cancelar", $mainDir);
@@ -65,6 +67,8 @@ $mainDir = '..';
 
             <?php if ($erro === 'campos-vazios'): ?>
                 <p class="mensagem-erro">Por favor, preencha todos os campos.</p>
+            <?php elseif ($erro === 'processamento-imagem'): ?>
+                <p class="mensagem-erro">Algo deu errado ao processar a imagem, tente novamente.</p>
             <?php endif; ?>
         </section>
     </main>

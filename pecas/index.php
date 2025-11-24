@@ -58,8 +58,9 @@ $mainDir = '..';
     <link rel="stylesheet" href="../css/lista.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Categorias - Loja Roupas</title>
+    <title><?= htmlspecialchars($categoria->getNome()) ?></title>
 </head>
 
 <body>
@@ -75,7 +76,7 @@ $mainDir = '..';
             foreach ($pecas as $peca) {
                 echo '<div class="lista-item">
 
-            <a href="">' . $peca->getNome() . ' <span>x' . $peca->getEstoque() . '</span></a>
+            <a href="./info.php?id='.$peca->getId().'&categoria_id='.$peca->getCategoriaId().'">' . $peca->getNome() . ' <span>x' . $peca->getEstoque() . '</span></a>
 
             <div class="lista-item-acoes">
                 <a href="' . criarParamsGet("editar", $peca->getId(), $limitePorPagina, $paginaAtual, $categoriaId) . '" class="lista-item-editar">

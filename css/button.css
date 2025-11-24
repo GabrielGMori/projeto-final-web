@@ -14,8 +14,13 @@
     }
 }
 
-.botao-padrao {
+.botao-padrao, .botao-pequeno {
     background-color: var(--marca);
+}
+
+.botao-pequeno {
+    font-size: 18px;
+    padding: 5px 10px;
 }
 
 .botao-cancelar {
