@@ -27,6 +27,18 @@ switch ($redirectErro) {
             exit;
         }
         $redirectErroQuery = "categoria_id=" . $_GET['categoria_id'];
+        $adicionado = false;
+        for ($i=0; $i<count($pecasModificado); $i++) {
+            if ($pecasModificado[$i]['id'] == $_GET['id']) {
+                $pecasModificado[$i]['quantidade'] = $_GET['quantidade'];
+                $pecasModificado[$i]['preco'] = $_GET['preco'];
+                $adicionado = true;
+                break;
+            }
+        }
+        if ($adicionado == true) {
+            break;
+        }
         $pecasModificado[] = ['id'=>$_GET['id'], 'quantidade'=>$_GET['quantidade'], 'preco'=>$_GET['preco']];
         break;
 
