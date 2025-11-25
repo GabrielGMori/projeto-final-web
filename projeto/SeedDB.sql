@@ -1,3 +1,5 @@
+-- SEED PARA TESTES --
+
 USE web_loja_de_roupas;
 
 -- -----------------------------
