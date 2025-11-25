@@ -26,30 +26,33 @@ $mainDir = '..';
 </head>
 
 <body>
-    <?php gerarHeader(true, false, $_SESSION['email'], $mainDir); ?>
+    <?php gerarHeader(true, true, $_SESSION['email'], $mainDir); ?>
 
     <main>
         <h1>Criar Novo Usuário</h1>
         <section class="container-form">
             <form action="salvar.php" method="POST">
-                <?php gerarInput('email', 'email', 'Email', 'Digite o email do usuário...', $mainDir); ?>
+                <?php gerarInput('email', 'email', 'E-mail', 'Digite o e-mail do usuário...', $mainDir); ?>
                 <?php gerarInput('senha', 'password', 'Senha', 'Digite a senha do usuário...', $mainDir); ?>
-                <label for="permissao">Permissão:</label>
-                <select name="permissao" id="permissao" required>
-                    <option value="" disabled selected>Selecione a permissão</option>
-                    <option value="admin">Admin</option>
-                    <option value="user">Usuário</option>
-                </select>
+
+                <div class="container-select">
+                    <label for="permissao">Permissão:</label>
+                    <select name="permissao" id="permissao" required>
+                        <option value="user" selected>User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
                 <div class="acoesForm" style="margin-top: 1em;">
                     <?php
                     gerarLink('index.php', 'Cancelar', 'cancelar', $mainDir);
-                    gerarButton('criar', 'Criar', 'padrao', false, $mainDir);
+                    gerarButton('criar', 'Criar', 'admin', false, $mainDir);
                     ?>
                 </div>
             </form>
 
             <?php if ($erro === 'campos-vazios'): ?>
-                <p class="mensagem-erro">Por favor, preencha todos os campos obrigatórios.</p>
+                <p class="mensagem-erro">Por favor, preencha todos os campos.</p>
             <?php elseif ($erro === 'email-existente'): ?>
                 <p class="mensagem-erro">Este email já está registrado.</p>
             <?php endif; ?>

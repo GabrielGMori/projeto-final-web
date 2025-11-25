@@ -18,8 +18,6 @@
     filter: brightness(0.15);
 } 
 
-
-
 .header-principal {
     display: flex;
     flex-direction: column;

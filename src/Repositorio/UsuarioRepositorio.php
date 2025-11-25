@@ -90,7 +90,7 @@ class UsuarioRepositorio
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $usuario->getEmail());
-        $stmt->bindValue(2, password_hash($usuario->getSenha(), PASSWORD_DEFAULT));
+        $stmt->bindValue(2, $usuario->getSenha());
         $stmt->bindValue(3, $usuario->getPermissao());
         $stmt->bindValue(4, $usuario->getId());
         $stmt->execute();

@@ -1,7 +1,7 @@
 <?php
 require_once 'button.php';
 
-function gerarHeader(bool $mostrarUsuarios, string $estiloAdmin, string $email, string $mainDir)
+function gerarHeader(bool $mostrarUsuarios, bool $estiloAdmin, string $email, string $mainDir)
 {
     echo '<link rel="stylesheet" href="'. htmlspecialchars($mainDir) .'/css/header.css">';
     echo '<header class="header-principal header-' . ($estiloAdmin == true ? 'admin' : 'user') . '">

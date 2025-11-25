@@ -1,0 +1,11 @@
+.admin {
+    background-color: var(--cinza-claro);
+}
+
+.admin h3, .admin p, .admin button, .admin a {
+    color: var(--preto);
+}
+
+.admin img {
+    filter: brightness(0.15);
+}

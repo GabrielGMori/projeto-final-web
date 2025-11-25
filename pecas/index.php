@@ -76,18 +76,18 @@ $mainDir = '..';
             foreach ($pecas as $peca) {
                 echo '<div class="lista-item">
 
-            <a href="./info.php?id='.$peca->getId().'&categoria_id='.$peca->getCategoriaId().'">' . $peca->getNome() . ' <span>x' . $peca->getEstoque() . '</span></a>
+                <a href="./info.php?id='.$peca->getId().'&categoria_id='.$peca->getCategoriaId().'">' . $peca->getNome() . ' <span>x' . $peca->getEstoque() . '</span></a>
 
-            <div class="lista-item-acoes">
-                <a href="' . criarParamsGet("editar", $peca->getId(), $limitePorPagina, $paginaAtual, $categoriaId) . '" class="lista-item-editar">
-                    <img src="../img/Editar.png" alt="Editar">
-                </a>
+                <div class="lista-item-acoes">
+                    <a href="' . criarParamsGet("editar", $peca->getId(), $limitePorPagina, $paginaAtual, $categoriaId) . '" class="lista-item-editar">
+                        <img src="../img/Editar.png" alt="Editar">
+                    </a>
 
-                <a href="' . criarParamsGet("excluir", $peca->getId(), $limitePorPagina, $paginaAtual, $categoriaId) . '" class="lista-item-excluir">
-                    <img src="../img/Excluir.png" alt="Excluir">
-                </a>
-            </div>
-            </div>';
+                    <a href="' . criarParamsGet("excluir", $peca->getId(), $limitePorPagina, $paginaAtual, $categoriaId) . '" class="lista-item-excluir">
+                        <img src="../img/Excluir.png" alt="Excluir">
+                    </a>
+                </div>
+                </div>';
             }
             ?>
         </div>

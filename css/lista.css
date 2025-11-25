@@ -55,8 +55,8 @@ main {
     width: 25px;
 }
 
-.container-editar {
-    max-width: 300px;
+.container-editar, .container-excluir {
+    max-width: 320px;
 }
 
 .lista-item {
@@ -184,4 +184,16 @@ footer {
 
 .mensagem-erro {
     margin-top: 15px;
+}
+
+.admin {
+    background-color: var(--cinza-claro);
+}
+
+.admin h3, .admin p, .admin button, .admin a {
+    color: var(--preto);
+}
+
+.admin img {
+    filter: brightness(0.15);
 }

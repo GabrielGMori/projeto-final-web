@@ -27,6 +27,24 @@ form button, .acoesForm button {
     align-self: center;
 }
 
+.container-select {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.container-select label {
+    font-family: "Lato", Arial, sans-serif;
+    color: var(--branco);
+    font-size: 20px;
+}
+
+.container-select select {
+    font-family: 'Lato', Arial, sans-serif;
+    font-size: 15px;
+    color: var(--preto);
+}
+
 .acoesForm {
     display: flex;
     justify-content: center;

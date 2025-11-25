@@ -27,6 +27,11 @@
     background-color: var(--vermelho);
 }
 
+.botao-admin {
+    background-color: var(--cinza-claro);
+    color: var(--preto)
+}
+
 .botao-paginacao {
     background-color: none;
     box-shadow: none;
