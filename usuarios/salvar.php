@@ -40,6 +40,12 @@ if ($id) {
         header('Location: index.php');
         exit;
     }
+
+    if ($permissao != 'admin' && $_SESSION['email'] === $usuario->getEmail()) {
+        header("Location: editar.php?id=$id&erro=usando-conta");
+        exit;
+    }
+
     $senhaParaSalvar = $senha !== '' ? password_hash($senha, PASSWORD_DEFAULT) : $usuario->getSenha();
     $repoUsuario->editar(new Usuario((int)$id, $email, $senhaParaSalvar, $permissao));
 

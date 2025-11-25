@@ -38,8 +38,8 @@ $mainDir = '..';
                 <div class="container-select">
                     <label for="permissao">Permissão:</label>
                     <select name="permissao" id="permissao" required>
-                        <option value="user" selected>User</option>
-                        <option value="admin">Admin</option>
+                        <option value="user" selected>Usuário</option>
+                        <option value="admin">Administrador (Gerencia usuários)</option>
                     </select>
                 </div>
 

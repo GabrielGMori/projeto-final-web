@@ -55,8 +55,8 @@ $mainDir = '..';
                 <div class="container-select">
                     <label for="permissao">Permissão:</label>
                     <select name="permissao" id="permissao" required>
-                        <option value="user" <?= $usuario->getPermissao() === 'user' ? 'selected' : '' ?>>User</option>
-                        <option value="admin" <?= $usuario->getPermissao() === 'admin' ? 'selected' : '' ?>>Admin</option>
+                        <option value="user" <?= $usuario->getPermissao() === 'user' ? 'selected' : '' ?>>Ususário</option>
+                        <option value="admin" <?= $usuario->getPermissao() === 'admin' ? 'selected' : '' ?>>Administrador (Gerencia usuários)</option>
                     </select>
                 </div>
 
@@ -72,6 +72,8 @@ $mainDir = '..';
                 <p class="mensagem-erro">Por favor, preencha todos os campos.</p>
             <?php elseif ($erro === 'email-existente'): ?>
                 <p class="mensagem-erro">Este email já está registrado.</p>
+            <?php elseif ($erro === 'usando-conta'): ?>
+                <p class="mensagem-erro">Não foi possível modificar a permissão para "usuário" porque este administrador está sendo usado no momento.</p>
             <?php endif; ?>
         </section>
     </main>
