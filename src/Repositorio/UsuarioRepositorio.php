@@ -57,4 +57,63 @@ class UsuarioRepositorio
         $usuario = $this->buscarPorEmail($email);
         return $usuario ? password_verify($senha, $usuario->getSenha()) : false;
     }
+
+    public function listarPaginado(int $limite, int $offset): array
+    {
+        $sql = "SELECT id_pk, email, senha, permissao FROM usuario ORDER BY email LIMIT ? OFFSET ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $limite, PDO::PARAM_INT);
+        $stmt->bindValue(2, $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $dados = $stmt->fetchAll();
+
+        $dadosFormatados = array();
+        for ($i = 0; $i < count($dados); $i++) {
+            $dadosFormatados[$i] = $this->formarObjeto($dados[$i]);
+        }
+        return $dadosFormatados;
+    }
+
+    public function remover(int $id): void
+    {
+        $sql = "DELETE FROM usuario WHERE id_pk = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function editar(Usuario $usuario): void
+    {
+        $sql = "UPDATE usuario SET email = ?, senha = ?, permissao = ? WHERE id_pk = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $usuario->getEmail());
+        $stmt->bindValue(2, password_hash($usuario->getSenha(), PASSWORD_DEFAULT));
+        $stmt->bindValue(3, $usuario->getPermissao());
+        $stmt->bindValue(4, $usuario->getId());
+        $stmt->execute();
+    }
+
+    public function buscarPorId(int $id): ?Usuario
+    {
+        $sql = "SELECT id_pk, email, senha, permissao FROM usuario WHERE id_pk = ?";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $dados = $stmt->fetch();
+        return $dados ? $this->formarObjeto($dados) : null;
+    }
+
+    public function contar(): int
+    {
+        $sql = "SELECT COUNT(*) AS total FROM usuario";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $dados = $stmt->fetch(PDO::FETCH_ASSOC);
+        return (int) $dados['total'];
+    }
 }
