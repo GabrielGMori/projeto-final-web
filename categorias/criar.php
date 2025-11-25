@@ -40,7 +40,7 @@ $mainDir = '..';
                 <div class="acoesForm">
                     <?php
                     gerarLink(".", "Cancelar", "cancelar", $mainDir);
-                    gerarButton("criar", "Criar", "padrao", false, $mainDir);
+                    gerarButton("criar", "Criar", "padrao", true, $mainDir);
                     ?>
                 </div>
 

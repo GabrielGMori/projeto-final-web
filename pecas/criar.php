@@ -42,7 +42,7 @@ $mainDir = '..';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="../img/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Criar Peça</title>
+    <title>Criar Peça (<?= htmlspecialchars($categoria->getNome()) ?>)</title>
 </head>
 
 <body>
@@ -59,7 +59,7 @@ $mainDir = '..';
                 <div class="acoesForm">
                     <?php
                     gerarLink(".?categoria_id=".$categoriaId, "Cancelar", "cancelar", $mainDir);
-                    gerarButton("criar", "Criar", "padrao", false, $mainDir);
+                    gerarButton("criar", "Criar", "padrao", true, $mainDir);
                     ?>
                 </div>
 

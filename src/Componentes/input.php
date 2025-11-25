@@ -1,20 +1,32 @@
 <?php
-function gerarInput(string $id, string $type, string $label, string $placeholder, string $mainDir)
+function gerarInput(string $name, string $type, string $label, string $placeholder, string $mainDir)
 {
     echo '<link rel="stylesheet" href="'.htmlspecialchars($mainDir).'/css/input.css">';
-    echo '<label class="label-padrao" for="' . htmlspecialchars($id) . '">' . htmlspecialchars($label) . '</label>';
-    echo '<input class="input-padrao" type="' . htmlspecialchars($type) . '" id="' . htmlspecialchars($id) . '" name="' . htmlspecialchars($id) . '" placeholder="' . htmlspecialchars($placeholder) . '">';
+    echo '<label class="label-padrao" for="' . htmlspecialchars($name) . '">' . htmlspecialchars($label) . '</label>';
+    echo '<input class="input-padrao" type="' . htmlspecialchars($type) . '" min="0" id="' . htmlspecialchars($name) . '" name="' . htmlspecialchars($name) . '" placeholder="' . htmlspecialchars($placeholder) . '">';
 }
 
-function gerarInputComValue(string $id, string $type, string $label, string $placeholder, string $value, string $mainDir)
+function gerarInputComValue(string $name, string $type, string $label, string $placeholder, string $value, string $mainDir)
 {
     echo '<link rel="stylesheet" href="'.htmlspecialchars($mainDir).'/css/input.css">';
-    echo '<label class="label-padrao" for="' . htmlspecialchars($id) . '">' . htmlspecialchars($label) . '</label>';
-    echo '<input class="input-padrao" type="' . htmlspecialchars($type) . '" id="' . htmlspecialchars($id) . '" name="' . htmlspecialchars($id) . '" placeholder="' . htmlspecialchars($placeholder) . '" value="' . htmlspecialchars($value) . '">';
+    echo '<label class="label-padrao" for="' . htmlspecialchars($name) . '">' . htmlspecialchars($label) . '</label>';
+    echo '<input class="input-padrao" type="' . htmlspecialchars($type) . '" min="0" id="' . htmlspecialchars($name) . '" name="' . htmlspecialchars($name) . '" placeholder="' . htmlspecialchars($placeholder) . '" value="' . htmlspecialchars($value) . '">';
 }
 
-function gerarInputImagem(string $id, string $accept, string $label, string $mainDir) {
+function gerarInputImagem(string $name, string $accept, string $label, string $mainDir) {
     echo '<link rel="stylesheet" href="'.htmlspecialchars($mainDir).'/css/input.css">';
-    echo '<label class="label-imagem" for="'.htmlspecialchars($id).'">'.htmlspecialchars($label).'</label>';
-    echo '<input class="input-imagem" id="'.htmlspecialchars($id).'" name="'.htmlspecialchars($id).'" type="file" accept="'.htmlspecialchars($accept).'">';
+    echo '<label class="label-imagem" for="'.htmlspecialchars($name).'">'.htmlspecialchars($label).'</label>';
+    echo '<input class="input-imagem" min="0" id="'.htmlspecialchars($name).'" name="'.htmlspecialchars($name).'" type="file" accept="'.htmlspecialchars($accept).'">';
+}
+
+function gerarInputDecimal(string $name, string $step, string $label, string $placeholder, string $mainDir) {
+    echo '<link rel="stylesheet" href="'.htmlspecialchars($mainDir).'/css/input.css">';
+    echo '<label class="label-padrao" for="' . htmlspecialchars($name) . '">' . htmlspecialchars($label) . '</label>';
+    echo '<input class="input-padrao" type="number" step="' . htmlspecialchars($step) . '" min="0" id="' . htmlspecialchars($name) . '" name="' . htmlspecialchars($name) . '" placeholder="' . htmlspecialchars($placeholder) . '">';
+}
+
+function gerarInputDecimalComValue(string $name, string $step, string $label, string $placeholder, string $value, string $mainDir) {
+    echo '<link rel="stylesheet" href="'.htmlspecialchars($mainDir).'/css/input.css">';
+    echo '<label class="label-padrao" for="' . htmlspecialchars($name) . '">' . htmlspecialchars($label) . '</label>';
+    echo '<input class="input-padrao" type="number" step="' . htmlspecialchars($step) . '" min="0" id="' . htmlspecialchars($name) . '" name="' . htmlspecialchars($name) . '" placeholder="' . htmlspecialchars($placeholder) . '" value="' . htmlspecialchars($value) . '">';
 }
