@@ -28,6 +28,12 @@ main {
     display: flex;
 }
 
+.container-direita-normal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .botao-add {
     align-self: flex-end;
     background-color: var(--marca);
@@ -41,8 +47,16 @@ main {
     box-shadow: 1px 1px 4px 1px black;
 }
 
+.container-direita-normal .botao-add {
+    align-self: flex-start;
+}
+
 .botao-add img {
     width: 25px;
+}
+
+.container-editar {
+    max-width: 300px;
 }
 
 .lista-item {
@@ -56,7 +70,7 @@ main {
     }
 }
 
-.lista-item>a {
+.lista-item>a, .lista-item>h3 {
     display: flex;
     align-items: center;
     font-family: 'Lato', Arial, sans-serif;
@@ -73,14 +87,40 @@ main {
     }
 }
 
+.lista-item-expansivel {
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--marca);
+    border-radius: 10px;
+    padding: 15px 10px;
+}
+
+.lista-item-expansivel-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.lista-item-expansivel-topo h3 {
+    font-family: 'Lato', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--branco);
+}
+
+.lista-item-expansivel-pecas {
+    margin-top: 10px;
+}
+
 .lista-item-acoes {
     display: flex;
     gap: 10px;
-    align-self: center;
+    align-self: space-between;
     margin-right: 10px;
 }
 
-.lista-item-acoes a {
+.lista-item-acoes a, .lista-item-expansivel-topo a {
     background-color: transparent;
     border: none;
     &:hover {
@@ -88,13 +128,26 @@ main {
     }
 }
 
-.lista-item-acoes a img {
+.lista-item-acoes a img, .lista-item-expansivel-topo a img {
     height: 30px;
 }
 
 .acoes {
     display: flex;
     gap: 15px;
+}
+
+.botao-expandir {
+    background-color: transparent;
+    border: none;
+    margin-top: 15px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.botao-expandir img {
+    width: 22px;
 }
 
 footer {

@@ -19,4 +19,9 @@ class Venda
     {
         return $this->dataHorario;
     }
+
+    public function getDataFormatada(): string
+    {
+        return  $this->dataHorario->format('d/m/Y - H:i');
+    }
 }

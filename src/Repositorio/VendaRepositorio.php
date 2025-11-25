@@ -12,7 +12,7 @@ class VendaRepositorio
 
     public function formarObjeto(array $dados): Venda
     {
-        return new Venda((int)$dados['id_pk'], $dados['data_horario']);
+        return new Venda((int)$dados['id_pk'], new DateTime($dados['data_horario']));
     }
 
     public function listar(): array
@@ -47,17 +47,19 @@ class VendaRepositorio
         return $dadosFormatados;
     }
 
-    public function criar(Venda $venda, array $pecas): void
+    public function criar(array $pecas): void
     {
         $sql = "INSERT INTO venda(data_horario) VALUES (NOW())";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
 
+        $vendaId = $this->pdo->lastInsertId();
+
         foreach ($pecas as $peca) {
             $sql = "INSERT INTO venda_tem_peca(Venda_id_fk_pk, Peca_id_fk_pk, preco, quantidade) VALUES (?,?,?,?)";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->bindValue(1, $venda->getId());
+            $stmt->bindValue(1, $vendaId);
             $stmt->bindValue(2, $peca['id']);
             $stmt->bindValue(3, $peca['preco']);
             $stmt->bindValue(4, $peca['quantidade']);

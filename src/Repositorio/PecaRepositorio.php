@@ -69,15 +69,15 @@ class PecaRepositorio
         $stmt->execute();
     }
 
-    public function editar(Peca $categoria): void
+    public function editar(Peca $peca): void
     {
         $sql = "UPDATE peca SET nome = ?, estoque = ?, imagem = ? WHERE id_pk = ?";
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(1, $categoria->getNome());
-        $stmt->bindValue(2, $categoria->getEstoque());
-        $stmt->bindValue(3, $categoria->getImagem());
-        $stmt->bindValue(4, $categoria->getId());
+        $stmt->bindValue(1, $peca->getNome());
+        $stmt->bindValue(2, $peca->getEstoque());
+        $stmt->bindValue(3, $peca->getImagem());
+        $stmt->bindValue(4, $peca->getId());
         $stmt->execute();
     }
 
