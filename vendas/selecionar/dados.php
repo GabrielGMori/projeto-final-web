@@ -80,7 +80,7 @@ $mainDir = '../..';
                 
                 <div class="acoesForm">
                     <?php
-                    gerarLink("peca.php?categoria_id=".$categoriaId, "Voltar", "cancelar", $mainDir);
+                    gerarLink("peca.php?categoria_id=".$categoriaId.'&'.http_build_query(["pecas" => $pecasSelecionadas]), "Voltar", "cancelar", $mainDir);
                     gerarButton("adicionar", "Adicionar", "padrao", true, $mainDir);
                     ?>
                 </div>

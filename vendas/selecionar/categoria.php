@@ -51,7 +51,7 @@ $mainDir = '../..';
     <h1>Selecione uma Categoria</h1>
     <main>
         <div class="container-voltar">
-            <?php gerarLink('../criar.php', "<", "padrao", $mainDir); ?>
+            <?php gerarLink('../criar.php?'.http_build_query(["pecas" => $pecasSelecionadas]), "<", "padrao", $mainDir); ?>
         </div>
         <div class="container-lista">
             <?php

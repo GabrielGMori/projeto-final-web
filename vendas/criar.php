@@ -52,7 +52,7 @@ $mainDir = '..';
     <h1>Nova Venda</h1>
     <main>
         <div class="container-voltar">
-            <?php gerarLink('../vendas', "<", "padrao", $mainDir); ?>
+            <?php gerarLink('../vendas', "<", "cancelar", $mainDir); ?>
         </div>
         <div class="container-lista">
             <?php
