@@ -1,0 +1,17 @@
+{
+    "name": "mori/projeto-final-web-2025",
+    "require": {
+        "dompdf/dompdf": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mori\\ProjetoFinalWeb2025\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gabriel Mori",
+            "email": "gabrielgimenezmori@gmail.com"
+        }
+    ]
+}

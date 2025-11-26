@@ -47,6 +47,22 @@ class VendaRepositorio
         return $dadosFormatados;
     }
 
+    public function listarPorData(DateTime $inicio, DateTime $fim) {
+        $sql = "SELECT id_pk, data_horario FROM venda WHERE data_horario >= ? AND data_horario <= ? ORDER BY data_horario DESC";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $inicio->format('Y-m-d H:i:s'));
+        $stmt->bindValue(2, $fim->format('Y-m-d H:i:s'));
+        $stmt->execute();
+        $dados = $stmt->fetchAll();
+
+        $dadosFormatados = array();
+        for ($i = 0; $i < count($dados); $i++) {
+            $dadosFormatados[$i] = $this->formarObjeto($dados[$i]);
+        }
+        return $dadosFormatados;
+    }
+
     public function criar(array $pecas): void
     {
         $sql = "INSERT INTO venda(data_horario) VALUES (NOW())";
@@ -88,7 +104,7 @@ class VendaRepositorio
     }
 
     public function getPecas(int $id): array {
-        $sql = "SELECT Peca_id_fk_pk AS id, preco, quantidade FROM venda_tem_peca WHERE Venda_id_fk_pk = ?";
+        $sql = "SELECT Peca_id_fk_pk AS id, preco, quantidade FROM venda_tem_peca WHERE Venda_id_fk_pk = ? ORDER BY Peca_id_fk_pk, preco, quantidade";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
